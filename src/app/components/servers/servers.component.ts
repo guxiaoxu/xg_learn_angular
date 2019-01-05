@@ -19,7 +19,7 @@ export class ServersComponent implements OnInit {
   reverse() {
     setTimeout(() => {
       this.allowNewServer = !this.allowNewServer;
-      this.reverse();
+      //this.reverse();
     }, 2000);
   }
 
@@ -29,6 +29,10 @@ export class ServersComponent implements OnInit {
   onCreationServer() {
     this.serverCreated++;
     this.serverCreationStatus = this.serverCreated + ' server(s) created.';
+  }
+
+  hasServerCreated() {
+    return !(this.serverCreated === 0);
   }
 
   onUpdateServerName(event: any) {
