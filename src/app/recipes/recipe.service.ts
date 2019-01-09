@@ -29,7 +29,7 @@ export class RecipeService {
     ),
   ];
 
-  selectedRecipe: Recipe = null;
+  selectedRecipe = false;
 
   constructor() { }
 
@@ -37,8 +37,10 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
-  selectRecipe(recipe: Recipe) {
-    this.selectedRecipe = recipe;
+  getRecipeByName(name: string) {
+    return this.recipes.find(
+      (x) => x.name === name
+    );
   }
 
 }

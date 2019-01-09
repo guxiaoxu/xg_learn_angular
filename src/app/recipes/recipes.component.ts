@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
@@ -12,12 +13,6 @@ export class RecipesComponent implements OnInit {
 
   constructor(private recipeService: RecipeService) { }
 
-  ngOnInit() {
-  }
-
-  onSelect(recipe: Recipe) {
-    console.log('parent load');
-    this.recipe = recipe;
-  }
+  ngOnInit() { }
 
 }
