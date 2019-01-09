@@ -1,9 +1,9 @@
-<div class='container'>
-    <div class='row'>
-        <div class='col-xs-12'>
-            <h3>Im' in the AppComponent!</h3>
-            <hr>
-            <app-servers></app-servers>
-        </div>  
+<app-header (featureSelected)="onNavigate($event)"></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-recipes *ngIf="featureSelected === 'recipes'"></app-recipes>
+      <app-shopping-list *ngIf="featureSelected === 'shoplist'"></app-shopping-list>
     </div>
+  </div>
 </div>

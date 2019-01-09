@@ -1,9 +1,0 @@
-<label>Server Name</label>
-<input class="form-control" type="text" [(ngModel)]="serverName">
-<p>{{ serverName }}</p>
-<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreationServer()">Add Server</button>
-<p>{{ serverCreationStatus }}</p>
-<p *ngIf="hasServerCreated()">Server has created, name is {{ serverName }}</p>
-<app-server></app-server>
-<app-server></app-server>
-<app-server></app-server>
