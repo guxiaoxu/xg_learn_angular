@@ -39,10 +39,8 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
-  getRecipeByName(name: string) {
-    return this.recipes.find(
-      (x) => x.name === name
-    );
+  getRecipeByIndex(index: number) {
+    return this.recipes[index];
   }
 
   addRecipe(recipe: Recipe) {
