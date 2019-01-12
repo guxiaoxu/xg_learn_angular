@@ -8,7 +8,7 @@ import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 const appRoutes: Routes = [
-  // { path: '', component: HeaderComponent },
+  { path: '', redirectTo: 'recipes', pathMatch: 'full' },
   { path: 'recipes', component: RecipesComponent, children: [
     { path: ':name', component: RecipeDetailComponent }
   ] },
