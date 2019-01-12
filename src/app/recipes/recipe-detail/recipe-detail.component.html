@@ -32,7 +32,9 @@
 <div class="row">
   <div class="col-xs-12">
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let inger of recipe.ingredients">{{ inger.name }} ({{ inger.amount }})</li>
+      <ng-container *ngIf="recipe">
+        <li class="list-group-item" *ngFor="let inger of recipe.ingredients">{{ inger.name }} ({{ inger.amount }})</li>
+    </ng-container>
     </ul>
   </div>
 </div>
