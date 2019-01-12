@@ -21,7 +21,6 @@ export class RecipeDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       (params) => {
-        console.log('inside rds');
         this.recipe = this.recipeService.getRecipeByName(params['name']);
         if (!this.recipe) {
           this.router.navigate(['not-found']);
