@@ -1,5 +1,5 @@
 import { Ingredient } from 'src/app/shared/ingredient.model';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 import { Recipe } from './recipe.model';
 
@@ -29,6 +29,8 @@ export class RecipeService {
     ),
   ];
 
+  recipesEventEmitter = new EventEmitter<Recipe[]>();
+
   selectedRecipe = false;
 
   constructor() { }
@@ -41,6 +43,11 @@ export class RecipeService {
     return this.recipes.find(
       (x) => x.name === name
     );
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipesEventEmitter.emit(this.recipes.slice());
   }
 
 }
