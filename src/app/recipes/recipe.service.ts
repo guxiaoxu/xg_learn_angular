@@ -43,9 +43,18 @@ export class RecipeService {
     return this.recipes[index];
   }
 
+  recipesChange() {
+    this.recipesEventEmitter.emit(this.recipes.slice());
+  }
+
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
-    this.recipesEventEmitter.emit(this.recipes.slice());
+    this.recipesChange();
+  }
+
+  deleteRecipe(recipe: Recipe) {
+    this.recipes = this.recipes.filter((ele) => ele !== recipe);
+    this.recipesChange();
   }
 
 }

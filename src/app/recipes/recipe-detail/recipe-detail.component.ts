@@ -1,7 +1,7 @@
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ShoppingListService } from './../../shopping-list/shoppingList.service';
 import { RecipeService } from './../recipe.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Recipe } from '../recipe.model';
 
@@ -10,8 +10,9 @@ import { Recipe } from '../recipe.model';
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
-export class RecipeDetailComponent implements OnInit {
+export class RecipeDetailComponent implements OnInit, OnDestroy {
   recipe: Recipe;
+  routeSubscription: any;
 
   constructor(private recipeService: RecipeService,
               private slService: ShoppingListService,
@@ -19,14 +20,18 @@ export class RecipeDetailComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.route.params.subscribe(
+    this.routeSubscription = this.route.params.subscribe(
       (params: Params) => {
-        this.recipe = this.recipeService.getRecipeByIndex(params['index']);
+        this.recipe = this.recipeService.getRecipeByIndex(+params['index']);
         if (!this.recipe) {
           this.router.navigate(['not-found']);
         }
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.routeSubscription.unsubscribe();
   }
 
   onAddToSL() {
@@ -35,5 +40,9 @@ export class RecipeDetailComponent implements OnInit {
         this.slService.addIngredient(ingredient);
       }
     );
+  }
+
+  onDeleteRecipe() {
+    this.recipeService.deleteRecipe(this.recipe);
   }
 }
